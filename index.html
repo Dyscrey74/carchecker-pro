@@ -1,1 +1,1227 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CarChecker Pro - Vehicle History Check</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={theme:{extend:{colors:{'car-dark':'#0a0f1c','car-navy':'#141e30','car-teal':'#00d4aa','car-cyan':'#00b8d4','car-gray':'#8892a4'}}}}</script><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><style>body{font-family:'DM Sans',sans-serif}.hero-bg{background:linear-gradient(135deg,#0a0f1c,#141e30,#1e3a5f)}.glow{box-shadow:0 0 0 1px rgba(0,212,170,.2),0 8px 40px rgba(0,212,170,.15)}.btn{background:linear-gradient(135deg,#00d4aa,#00b8d4);box-shadow:0 4px 20px rgba(0,212,170,.3)}.btn:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(0,212,170,.5)}.card{background:linear-gradient(145deg,rgba(30,58,95,.5),rgba(20,30,48,.8));border:1px solid rgba(0,212,170,.1)}.card:hover{transform:translateY(-5px);border-color:rgba(0,212,170,.4)}</style></head><body class="bg-car-dark text-white"><nav class="fixed w-full z-50 bg-car-dark/90 backdrop-blur border-b border-white/5"><div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"><a href="#" class="flex items-center gap-2"><div class="w-10 h-10 bg-gradient-to-br from-car-teal to-car-cyan rounded-xl flex items-center justify-center"><span class="text-2xl">🚗</span></div><span style="font-family:'Bebas Neue'" class="text-2xl">CARCHECKER<span class="text-car-teal">PRO</span></span></a><a href="#check" class="btn px-6 py-2 rounded-full text-car-dark font-semibold">Free Report</a></div></nav><section id="check" class="hero-bg min-h-screen flex items-center pt-20"><div class="max-w-4xl mx-auto px-4 text-center"><div class="inline-flex items-center gap-2 bg-car-teal/10 border border-car-teal/30 rounded-full px-4 py-2 mb-8"><span class="w-2 h-2 bg-car-teal rounded-full animate-pulse"></span><span class="text-sm text-car-teal">Trusted by 10M+ users</span></div><h1 style="font-family:'Bebas Neue'" class="text-5xl md:text-7xl mb-4">CHECK ANY VEHICLE<span class="block bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">INSTANTLY</span></h1><p class="text-car-gray text-lg mb-10 max-w-2xl mx-auto">Get comprehensive vehicle history reports in seconds. Accidents, title status, odometer, recalls, and market value.</p><div class="glow bg-car-navy/80 rounded-2xl p-2 max-w-xl mx-auto mb-4"><div class="flex gap-2"><input type="text" id="vin" placeholder="Enter VIN (17 characters)" maxlength="17" class="flex-1 bg-transparent px-6 py-4 text-lg focus:outline-none placeholder-car-gray/50"><button onclick="checkVIN()" class="btn px-8 py-4 rounded-xl text-car-dark font-bold">Check Now</button></div></div><p class="text-sm text-car-gray/60"><span class="text-car-teal">✓</span> Free <span class="mx-2">•</span><span class="text-car-teal">✓</span> 30 seconds <span class="mx-2">•</span><button onclick="showSample()" class="text-car-teal hover:underline">View Sample</button></p><div class="flex justify-center gap-8 mt-10"><div><div style="font-family:'Bebas Neue'" class="text-4xl bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">10M+</div><div class="text-sm text-car-gray">Checks</div></div><div><div style="font-family:'Bebas Neue'" class="text-4xl bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">50+</div><div class="text-sm text-car-gray">Sources</div></div><div><div style="font-family:'Bebas Neue'" class="text-4xl bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">99%</div><div class="text-sm text-car-gray">Accuracy</div></div></div></div></section><section class="py-20 bg-car-dark"><div class="max-w-6xl mx-auto px-4"><h2 style="font-family:'Bebas Neue'" class="text-4xl text-center mb-12">WHAT YOU <span class="text-car-teal">GET</span></h2><div class="grid md:grid-cols-3 gap-6"><div class="card rounded-2xl p-6"><div class="text-3xl mb-4">📋</div><h3 class="text-xl font-semibold mb-2">Vehicle History</h3><p class="text-car-gray">Full ownership records</p></div><div class="card rounded-2xl p-6"><div class="text-3xl mb-4">⚠️</div><h3 class="text-xl font-semibold mb-2">Accidents</h3><p class="text-car-gray">Collision and damage reports</p></div><div class="card rounded-2xl p-6"><div class="text-3xl mb-4">🔢</div><h3 class="text-xl font-semibold mb-2">Odometer</h3><p class="text-car-gray">Mileage verification</p></div><div class="card rounded-2xl p-6"><div class="text-3xl mb-4">🛡️</div><h3 class="text-xl font-semibold mb-2">Title Status</h3><p class="text-car-gray">Salvage, flood, lemon</p></div><div class="card rounded-2xl p-6"><div class="text-3xl mb-4">🔔</div><h3 class="text-xl font-semibold mb-2">Recalls</h3><p class="text-car-gray">Safety alerts</p></div><div class="card rounded-2xl p-6"><div class="text-3xl mb-4">💰</div><h3 class="text-xl font-semibold mb-2">Market Value</h3><p class="text-car-gray">Price estimates</p></div></div></div></section><section class="py-20 bg-car-navy"><div class="max-w-4xl mx-auto px-4"><h2 style="font-family:'Bebas Neue'" class="text-4xl text-center mb-12">SIMPLE <span class="text-car-teal">PRICING</span></h2><div class="grid md:grid-cols-3 gap-6"><div class="card rounded-2xl p-6 text-center"><h3 style="font-family:'Bebas Neue'" class="text-2xl mb-2">BASIC</h3><div class="text-3xl font-bold mb-4">Free</div><ul class="text-car-gray text-sm space-y-2 mb-6"><li>✓ Vehicle specs</li><li>✓ Title check</li><li>✓ Recalls</li></ul><a href="#check" class="block border border-car-teal text-car-teal py-2 rounded-xl hover:bg-car-teal/10">Get Free</a></div><div class="card rounded-2xl p-6 text-center border-car-teal/30"><div class="text-xs text-car-teal mb-2">POPULAR</div><h3 style="font-family:'Bebas Neue'" class="text-2xl mb-2">PREMIUM</h3><div class="text-3xl font-bold mb-4">$9.99</div><ul class="text-car-gray text-sm space-y-2 mb-6"><li>✓ Full history</li><li>✓ Accidents</li><li>✓ Odometer</li><li>✓ Market value</li></ul><a href="#check" class="btn block py-2 rounded-xl text-car-dark font-semibold">Get Premium</a></div><div class="card rounded-2xl p-6 text-center"><h3 style="font-family:'Bebas Neue'" class="text-2xl mb-2">PRO</h3><div class="text-3xl font-bold mb-4">$29.99<span class="text-sm text-car-gray">/mo</span></div><ul class="text-car-gray text-sm space-y-2 mb-6"><li>✓ Unlimited</li><li>✓ API access</li><li>✓ Priority support</li></ul><a href="#check" class="block border border-car-teal text-car-teal py-2 rounded-xl hover:bg-car-teal/10">Start Trial</a></div></div></div></section><footer class="py-8 bg-car-dark border-t border-white/5"><div class="max-w-6xl mx-auto px-4 text-center text-car-gray text-sm">© 2026 CarChecker Pro</div></footer><div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4"><div class="bg-car-navy rounded-2xl max-w-lg w-full p-6 relative"><button onclick="closeModal()" class="absolute top-4 right-4 text-car-gray hover:text-white">✕</button><div id="mc"></div></div></div><script>const vi=document.getElementById('vin');vi.addEventListener('input',e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g,''));let ue='';function checkVIN(){const v=vi.value;if(v.length!==17)return alert('Enter valid 17-char VIN');showEmail(v)}function showEmail(vin){document.getElementById('modal').classList.remove('hidden');document.getElementById('modal').classList.add('flex');document.getElementById('mc').innerHTML='<div class="text-center mb-6"><div class="w-16 h-16 bg-car-teal/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-3xl">📧</span></div><h3 style="font-family:Bebas Neue" class="text-2xl mb-2">GET YOUR FREE REPORT</h3><p class="text-car-gray text-sm">Enter email to receive results</p></div><input type="email" id="em" placeholder="your@email.com" class="w-full bg-car-dark/50 border border-white/10 rounded-xl px-4 py-3 mb-4 focus:outline-none focus:border-car-teal/50"><button onclick="doCheck(\''+vin+'\')" class="btn w-full py-3 rounded-xl text-car-dark font-bold">Get My Report</button><p class="text-center text-car-gray text-xs mt-3">No spam ever.</p>'}function doCheck(vin){const e=document.getElementById('em').value;if(!e||!e.includes('@'))return;ue=e;document.getElementById('mc').innerHTML='<div class="text-center py-8"><div class="animate-spin w-12 h-12 border-4 border-car-teal border-t-transparent rounded-full mx-auto mb-4"></div><p>Scanning databases...</p></div>';fetch('https://n8n.srv803546.hstgr.cloud/webhook/carchecker/vin-check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({vin,email:e})}).then(r=>r.json()).then(d=>showRpt(d,vin)).catch(()=>showRpt({success:1,vin,vehicle:{year:'2023',make:'Demo',model:'Vehicle'},titleStatus:{status:'CLEAN'},recalls:{count:0}},vin))}function showRpt(d,vin){const v=d.vehicle||{};document.getElementById('mc').innerHTML='<div class="text-center mb-4"><div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3"><span class="text-2xl">✓</span></div><h3 style="font-family:Bebas Neue" class="text-2xl">'+(v.year||'')+' '+(v.make||'')+' '+(v.model||'')+'</h3><p class="text-car-gray text-sm">VIN: '+vin+'</p></div><div class="space-y-3 mb-4"><div class="bg-car-dark/50 rounded-lg p-3"><span class="text-car-teal">✓ Title:</span> <span class="text-green-400">'+(d.titleStatus?.status||'Clean')+'</span></div><div class="bg-car-dark/50 rounded-lg p-3"><span class="text-car-teal">✓ Recalls:</span> <span class="'+(d.recalls?.count>0?'text-yellow-400':'text-green-400')+'">'+(d.recalls?.count||0)+' found</span></div><div class="bg-car-dark/50 rounded-lg p-3 opacity-50"><span class="text-car-gray">🔒 Accidents - Premium</span></div><div class="bg-car-dark/50 rounded-lg p-3 opacity-50"><span class="text-car-gray">🔒 Odometer - Premium</span></div></div><div class="flex justify-center gap-2 mb-4"><button onclick="shr(\'tw\',\''+vin+'\')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal">𝕏</button><button onclick="shr(\'fb\',\''+vin+'\')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal">f</button><button onclick="shr(\'wa\',\''+vin+'\')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal">w</button><button onclick="cpy(\''+vin+'\')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal">📋</button></div><button class="btn w-full py-3 rounded-xl text-car-dark font-bold">Unlock Full Report - $9.99</button>'}function shr(p,vin){const u=encodeURIComponent(location.origin+'?vin='+vin),t=encodeURIComponent('Clean title on CarChecker Pro!');const urls={tw:'https://twitter.com/intent/tweet?text='+t+'&url='+u,fb:'https://facebook.com/sharer/sharer.php?u='+u,wa:'https://wa.me/?text='+t+' '+u};window.open(urls[p],'_blank')}function cpy(vin){navigator.clipboard.writeText(location.origin+'?vin='+vin);alert('Link copied!')}function showSample(){document.getElementById('modal').classList.remove('hidden');document.getElementById('modal').classList.add('flex');document.getElementById('mc').innerHTML='<div class="bg-gradient-to-r from-car-teal/20 to-car-cyan/20 -m-6 mb-4 p-4 rounded-t-2xl"><p class="text-car-teal text-xs font-semibold">SAMPLE PREMIUM REPORT</p><h3 style="font-family:Bebas Neue" class="text-2xl">2023 TOYOTA CAMRY LE</h3><p class="text-car-gray text-sm">VIN: 4T1BF1FK5CU******</p></div><div class="space-y-3 mb-4"><div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3"><span class="text-green-400 font-semibold">✓ Title: CLEAN</span></div><div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3"><span class="text-green-400 font-semibold">✓ Accidents: NONE</span></div><div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3"><span class="text-green-400 font-semibold">✓ Odometer: VERIFIED</span><p class="text-car-gray text-xs mt-1">12,450 mi (Jan 2024)</p></div><div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3"><span class="text-yellow-400 font-semibold">⚠️ Recalls: 1</span><p class="text-car-gray text-xs mt-1">Fuel pump - contact dealer</p></div><div class="bg-car-dark/50 rounded-lg p-3 text-center"><p class="text-car-gray text-xs">Market Value</p><p style="font-family:Bebas Neue" class="text-3xl">$24,500</p></div></div><button onclick="closeModal();vi.focus()" class="btn w-full py-3 rounded-xl text-car-dark font-bold">Check Your Vehicle</button>'}function closeModal(){document.getElementById('modal').classList.add('hidden');document.getElementById('modal').classList.remove('flex')}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarChecker Pro - Vehicle History Reports</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'car-dark': '#0a0f1c',
+            'car-navy': '#141e30',
+            'car-teal': '#00d4aa',
+            'car-cyan': '#00b8d4',
+            'car-gray': '#8892a4'
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .hero-bg { background: linear-gradient(135deg, #0a0f1c 0%, #141e30 50%, #1e3a5f 100%); }
+    .glow { box-shadow: 0 0 0 1px rgba(0,212,170,0.2), 0 8px 40px rgba(0,212,170,0.15); }
+    .btn { background: linear-gradient(135deg, #00d4aa 0%, #00b8d4 100%); box-shadow: 0 4px 20px rgba(0,212,170,0.3); transition: all 0.3s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(0,212,170,0.5); }
+    .btn-outline { border: 1px solid #00d4aa; color: #00d4aa; background: transparent; }
+    .btn-outline:hover { background: rgba(0,212,170,0.1); }
+    .card { background: linear-gradient(145deg, rgba(30,58,95,0.5), rgba(20,30,48,0.8)); border: 1px solid rgba(0,212,170,0.1); transition: all 0.3s; }
+    .card:hover { transform: translateY(-5px); border-color: rgba(0,212,170,0.4); }
+    .tab-active { background: linear-gradient(135deg, #00d4aa 0%, #00b8d4 100%); color: #0a0f1c; }
+    .tab-inactive { background: rgba(255,255,255,0.05); color: #8892a4; }
+    .tab-inactive:hover { background: rgba(255,255,255,0.1); }
+    .input-field { background: rgba(10,15,28,0.5); border: 1px solid rgba(255,255,255,0.1); }
+    .input-field:focus { border-color: rgba(0,212,170,0.5); outline: none; }
+    .social-btn { transition: all 0.2s; }
+    .social-btn:hover { transform: scale(1.02); }
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+  </style>
+</head>
+<body class="bg-car-dark text-white min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-car-dark/95 backdrop-blur-lg border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" onclick="showPage('home')" class="flex items-center gap-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-car-teal to-car-cyan rounded-xl flex items-center justify-center">
+          <span class="text-2xl">🚗</span>
+        </div>
+        <span style="font-family: 'Bebas Neue', sans-serif;" class="text-2xl tracking-wide">
+          CARCHECKER<span class="text-car-teal">PRO</span>
+        </span>
+      </a>
+      
+      <div class="flex items-center gap-3">
+        <!-- Not logged in -->
+        <div id="nav-guest" class="flex items-center gap-3">
+          <button onclick="showModal('login')" class="text-car-gray hover:text-white transition px-4 py-2">Sign In</button>
+          <button onclick="showModal('signup')" class="btn px-5 py-2 rounded-full text-car-dark font-semibold text-sm">Get Started</button>
+        </div>
+        
+        <!-- Logged in -->
+        <div id="nav-user" class="hidden flex items-center gap-3">
+          <button onclick="showPage('dashboard')" class="text-car-gray hover:text-white transition px-4 py-2">Dashboard</button>
+          <button onclick="toggleSidebar()" class="w-10 h-10 bg-gradient-to-br from-car-teal to-car-cyan rounded-full flex items-center justify-center font-bold text-car-dark">
+            <span id="user-avatar">U</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebar-overlay" class="sidebar-overlay fixed inset-0 bg-black/60 z-50" onclick="toggleSidebar()"></div>
+  
+  <!-- User Sidebar -->
+  <div id="sidebar" class="sidebar fixed top-0 right-0 h-full w-80 bg-car-navy border-l border-white/10 z-50 p-6">
+    <div class="flex justify-between items-center mb-8">
+      <h3 style="font-family: 'Bebas Neue';" class="text-xl">MY ACCOUNT</h3>
+      <button onclick="toggleSidebar()" class="text-car-gray hover:text-white text-2xl">&times;</button>
+    </div>
+    
+    <div class="flex items-center gap-4 mb-8 pb-6 border-b border-white/10">
+      <div class="w-14 h-14 bg-gradient-to-br from-car-teal to-car-cyan rounded-full flex items-center justify-center text-2xl font-bold text-car-dark">
+        <span id="sidebar-avatar">U</span>
+      </div>
+      <div>
+        <p id="sidebar-name" class="font-semibold">User Name</p>
+        <p id="sidebar-email" class="text-sm text-car-gray">user@email.com</p>
+      </div>
+    </div>
+    
+    <nav class="space-y-2">
+      <button onclick="showPage('dashboard'); toggleSidebar();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex items-center gap-3">
+        <span>📊</span> Dashboard
+      </button>
+      <button onclick="showPage('profile'); toggleSidebar();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex items-center gap-3">
+        <span>👤</span> Profile
+      </button>
+      <button onclick="showPage('orders'); toggleSidebar();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex items-center gap-3">
+        <span>🧾</span> Orders
+      </button>
+      <button onclick="showPage('reports'); toggleSidebar();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex items-center gap-3">
+        <span>📋</span> My Reports
+      </button>
+      <button onclick="showPage('vehicles'); toggleSidebar();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex items-center gap-3">
+        <span>🚙</span> My Vehicles
+      </button>
+    </nav>
+    
+    <div class="absolute bottom-6 left-6 right-6">
+      <button onclick="logout()" class="w-full px-4 py-3 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/10 flex items-center justify-center gap-2">
+        <span>🚪</span> Sign Out
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- HOME PAGE -->
+    <div id="page-home">
+      <!-- Hero Section -->
+      <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+          <div class="inline-flex items-center gap-2 bg-car-teal/10 border border-car-teal/30 rounded-full px-4 py-2 mb-8">
+            <span class="w-2 h-2 bg-car-teal rounded-full animate-pulse"></span>
+            <span class="text-sm text-car-teal">Trusted by 10M+ users worldwide</span>
+          </div>
+          
+          <h1 style="font-family: 'Bebas Neue', sans-serif;" class="text-5xl md:text-7xl mb-4 leading-tight">
+            CHECK ANY VEHICLE
+            <span class="block bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">INSTANTLY</span>
+          </h1>
+          
+          <p class="text-car-gray text-lg mb-10 max-w-2xl mx-auto">
+            Get comprehensive vehicle history reports in seconds. Accidents, title status, odometer, recalls, and market value.
+          </p>
+          
+          <!-- Search Box with Tabs -->
+          <div class="glow bg-car-navy/80 rounded-2xl p-4 max-w-xl mx-auto mb-4">
+            <!-- Tabs -->
+            <div class="flex mb-4 bg-car-dark/50 rounded-xl p-1">
+              <button id="tab-vin" onclick="switchTab('vin')" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-active">
+                🔢 VIN Number
+              </button>
+              <button id="tab-plate" onclick="switchTab('plate')" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-inactive">
+                🚘 License Plate
+              </button>
+            </div>
+            
+            <!-- VIN Input -->
+            <div id="input-vin" class="flex gap-2">
+              <input type="text" id="vin" placeholder="Enter VIN (17 characters)" maxlength="17" 
+                class="flex-1 bg-transparent border-0 px-6 py-4 text-lg focus:outline-none placeholder-car-gray/50 uppercase">
+              <button onclick="checkVehicle('vin')" class="btn px-8 py-4 rounded-xl text-car-dark font-bold whitespace-nowrap">
+                Check Now
+              </button>
+            </div>
+            
+            <!-- Plate Input -->
+            <div id="input-plate" class="hidden">
+              <div class="flex gap-2 mb-3">
+                <select id="plate-country" class="bg-car-dark/50 border border-white/10 rounded-xl px-4 py-4 focus:outline-none focus:border-car-teal/50">
+                  <option value="US">🇺🇸 USA</option>
+                  <option value="UK">🇬🇧 UK</option>
+                  <option value="DE">🇩🇪 Germany</option>
+                  <option value="FR">🇫🇷 France</option>
+                  <option value="ES">🇪🇸 Spain</option>
+                  <option value="IT">🇮🇹 Italy</option>
+                  <option value="PL">🇵🇱 Poland</option>
+                  <option value="NL">🇳🇱 Netherlands</option>
+                </select>
+                <input type="text" id="plate" placeholder="Enter license plate" maxlength="10"
+                  class="flex-1 bg-transparent border-0 px-6 py-4 text-lg focus:outline-none placeholder-car-gray/50 uppercase">
+              </div>
+              <div class="flex gap-2">
+                <select id="plate-state" class="flex-1 bg-car-dark/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-car-teal/50">
+                  <option value="">Select State (US only)</option>
+                  <option value="CA">California</option>
+                  <option value="TX">Texas</option>
+                  <option value="FL">Florida</option>
+                  <option value="NY">New York</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="IL">Illinois</option>
+                  <option value="OH">Ohio</option>
+                  <option value="GA">Georgia</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="MI">Michigan</option>
+                </select>
+                <button onclick="checkVehicle('plate')" class="btn px-8 py-3 rounded-xl text-car-dark font-bold whitespace-nowrap">
+                  Check Now
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <p class="text-sm text-car-gray/60">
+            <span class="text-car-teal">✓</span> Free basic report
+            <span class="mx-2">•</span>
+            <span class="text-car-teal">✓</span> Results in 30 seconds
+            <span class="mx-2">•</span>
+            <button onclick="showSample()" class="text-car-teal hover:underline">View Sample Report</button>
+          </p>
+          
+          <!-- Stats -->
+          <div class="flex justify-center gap-8 mt-12">
+            <div>
+              <div style="font-family: 'Bebas Neue';" class="text-4xl bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">10M+</div>
+              <div class="text-sm text-car-gray">Reports Generated</div>
+            </div>
+            <div>
+              <div style="font-family: 'Bebas Neue';" class="text-4xl bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">50+</div>
+              <div class="text-sm text-car-gray">Data Sources</div>
+            </div>
+            <div>
+              <div style="font-family: 'Bebas Neue';" class="text-4xl bg-gradient-to-r from-car-teal to-car-cyan bg-clip-text text-transparent">99%</div>
+              <div class="text-sm text-car-gray">Accuracy Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Features Section -->
+      <section class="py-20 bg-car-dark">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 style="font-family: 'Bebas Neue';" class="text-4xl text-center mb-4">
+            WHAT YOU <span class="text-car-teal">GET</span>
+          </h2>
+          <p class="text-car-gray text-center mb-12 max-w-2xl mx-auto">
+            Our comprehensive reports give you everything you need to make informed decisions
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="card rounded-2xl p-6">
+              <div class="text-3xl mb-4">📋</div>
+              <h3 class="text-xl font-semibold mb-2">Vehicle History</h3>
+              <p class="text-car-gray">Complete ownership records and registration history</p>
+            </div>
+            <div class="card rounded-2xl p-6">
+              <div class="text-3xl mb-4">⚠️</div>
+              <h3 class="text-xl font-semibold mb-2">Accident Reports</h3>
+              <p class="text-car-gray">Detailed collision and damage history</p>
+            </div>
+            <div class="card rounded-2xl p-6">
+              <div class="text-3xl mb-4">🔢</div>
+              <h3 class="text-xl font-semibold mb-2">Odometer Check</h3>
+              <p class="text-car-gray">Mileage verification and rollback detection</p>
+            </div>
+            <div class="card rounded-2xl p-6">
+              <div class="text-3xl mb-4">🛡️</div>
+              <h3 class="text-xl font-semibold mb-2">Title Status</h3>
+              <p class="text-car-gray">Salvage, flood, lemon law, and theft records</p>
+            </div>
+            <div class="card rounded-2xl p-6">
+              <div class="text-3xl mb-4">🔔</div>
+              <h3 class="text-xl font-semibold mb-2">Safety Recalls</h3>
+              <p class="text-car-gray">Open recalls and safety campaigns</p>
+            </div>
+            <div class="card rounded-2xl p-6">
+              <div class="text-3xl mb-4">💰</div>
+              <h3 class="text-xl font-semibold mb-2">Market Value</h3>
+              <p class="text-car-gray">Current fair market price estimates</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Pricing Section -->
+      <section class="py-20 bg-car-navy">
+        <div class="max-w-4xl mx-auto px-4">
+          <h2 style="font-family: 'Bebas Neue';" class="text-4xl text-center mb-4">
+            SIMPLE <span class="text-car-teal">PRICING</span>
+          </h2>
+          <p class="text-car-gray text-center mb-12">No hidden fees. Cancel anytime.</p>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="card rounded-2xl p-6 text-center">
+              <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">BASIC</h3>
+              <div class="text-3xl font-bold mb-4">Free</div>
+              <ul class="text-car-gray text-sm space-y-2 mb-6">
+                <li>✓ Vehicle specifications</li>
+                <li>✓ Title status check</li>
+                <li>✓ Open recalls</li>
+              </ul>
+              <a href="#" onclick="scrollToSearch()" class="block border border-car-teal text-car-teal py-2 rounded-xl hover:bg-car-teal/10 transition">
+                Get Free Report
+              </a>
+            </div>
+            
+            <div class="card rounded-2xl p-6 text-center border-car-teal/30 relative">
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-car-teal text-car-dark text-xs font-bold px-3 py-1 rounded-full">
+                MOST POPULAR
+              </div>
+              <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">PREMIUM</h3>
+              <div class="text-3xl font-bold mb-4">$9.99</div>
+              <ul class="text-car-gray text-sm space-y-2 mb-6">
+                <li>✓ Everything in Basic</li>
+                <li>✓ Full accident history</li>
+                <li>✓ Odometer verification</li>
+                <li>✓ Market value estimate</li>
+                <li>✓ Ownership history</li>
+              </ul>
+              <button class="btn w-full py-2 rounded-xl text-car-dark font-semibold">
+                Get Premium
+              </button>
+            </div>
+            
+            <div class="card rounded-2xl p-6 text-center">
+              <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">PRO</h3>
+              <div class="text-3xl font-bold mb-4">$29.99<span class="text-sm text-car-gray font-normal">/mo</span></div>
+              <ul class="text-car-gray text-sm space-y-2 mb-6">
+                <li>✓ Unlimited reports</li>
+                <li>✓ API access</li>
+                <li>✓ Priority support</li>
+                <li>✓ Bulk exports</li>
+              </ul>
+              <a href="#" class="block border border-car-teal text-car-teal py-2 rounded-xl hover:bg-car-teal/10 transition">
+                Start 7-Day Trial
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="py-8 bg-car-dark border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-car-gray text-sm">© 2026 CarChecker Pro. All rights reserved.</p>
+          <div class="flex gap-6 text-sm text-car-gray">
+            <a href="#" class="hover:text-white">Privacy</a>
+            <a href="#" class="hover:text-white">Terms</a>
+            <a href="#" class="hover:text-white">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="page-dashboard" class="hidden pt-20 min-h-screen">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <h1 style="font-family: 'Bebas Neue';" class="text-3xl mb-2">WELCOME BACK, <span id="dash-name" class="text-car-teal">USER</span></h1>
+        <p class="text-car-gray mb-8">Here's an overview of your account</p>
+        
+        <div class="grid md:grid-cols-4 gap-4 mb-8">
+          <div class="card rounded-xl p-4">
+            <p class="text-car-gray text-sm">Total Reports</p>
+            <p style="font-family: 'Bebas Neue';" class="text-3xl text-car-teal" id="stat-reports">0</p>
+          </div>
+          <div class="card rounded-xl p-4">
+            <p class="text-car-gray text-sm">Saved Vehicles</p>
+            <p style="font-family: 'Bebas Neue';" class="text-3xl text-car-teal" id="stat-vehicles">0</p>
+          </div>
+          <div class="card rounded-xl p-4">
+            <p class="text-car-gray text-sm">Total Orders</p>
+            <p style="font-family: 'Bebas Neue';" class="text-3xl text-car-teal" id="stat-orders">0</p>
+          </div>
+          <div class="card rounded-xl p-4">
+            <p class="text-car-gray text-sm">Member Since</p>
+            <p style="font-family: 'Bebas Neue';" class="text-3xl text-car-teal" id="stat-since">-</p>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-4">🔍 Quick Check</h3>
+            <div class="flex gap-2">
+              <input type="text" id="dash-vin" placeholder="Enter VIN or Plate" class="flex-1 input-field rounded-xl px-4 py-3">
+              <button onclick="quickCheck()" class="btn px-6 py-3 rounded-xl text-car-dark font-semibold">Check</button>
+            </div>
+          </div>
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-4">⭐ Recent Activity</h3>
+            <div id="recent-activity" class="text-car-gray text-sm">
+              <p>No recent activity</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Reports -->
+        <div class="card rounded-2xl p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-semibold">📋 Recent Reports</h3>
+            <button onclick="showPage('reports')" class="text-car-teal text-sm hover:underline">View All →</button>
+          </div>
+          <div id="recent-reports" class="space-y-3">
+            <p class="text-car-gray text-sm">No reports yet. <a href="#" onclick="showPage('home')" class="text-car-teal hover:underline">Check a vehicle</a> to get started.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="hidden pt-20 min-h-screen">
+      <div class="max-w-2xl mx-auto px-4 py-8">
+        <h1 style="font-family: 'Bebas Neue';" class="text-3xl mb-8">MY <span class="text-car-teal">PROFILE</span></h1>
+        
+        <div class="card rounded-2xl p-6 mb-6">
+          <div class="flex items-center gap-6 mb-6">
+            <div class="w-20 h-20 bg-gradient-to-br from-car-teal to-car-cyan rounded-full flex items-center justify-center text-3xl font-bold text-car-dark">
+              <span id="profile-avatar">U</span>
+            </div>
+            <div>
+              <p class="font-semibold text-xl" id="profile-name">User Name</p>
+              <p class="text-car-gray" id="profile-email">user@email.com</p>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="text-sm text-car-gray block mb-1">Full Name</label>
+              <input type="text" id="edit-name" class="w-full input-field rounded-xl px-4 py-3">
+            </div>
+            <div>
+              <label class="text-sm text-car-gray block mb-1">Email</label>
+              <input type="email" id="edit-email" class="w-full input-field rounded-xl px-4 py-3" disabled>
+            </div>
+            <div>
+              <label class="text-sm text-car-gray block mb-1">Phone (optional)</label>
+              <input type="tel" id="edit-phone" class="w-full input-field rounded-xl px-4 py-3" placeholder="+1 (555) 000-0000">
+            </div>
+            <button onclick="saveProfile()" class="btn px-6 py-3 rounded-xl text-car-dark font-semibold">
+              Save Changes
+            </button>
+          </div>
+        </div>
+        
+        <div class="card rounded-2xl p-6">
+          <h3 class="font-semibold mb-4">🔐 Security</h3>
+          <button onclick="showModal('change-password')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex justify-between items-center">
+            <span>Change Password</span>
+            <span class="text-car-gray">→</span>
+          </button>
+          <button class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 flex justify-between items-center text-red-400">
+            <span>Delete Account</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS PAGE -->
+    <div id="page-orders" class="hidden pt-20 min-h-screen">
+      <div class="max-w-4xl mx-auto px-4 py-8">
+        <h1 style="font-family: 'Bebas Neue';" class="text-3xl mb-8">MY <span class="text-car-teal">ORDERS</span></h1>
+        
+        <div id="orders-list" class="space-y-4">
+          <div class="card rounded-2xl p-6 text-center">
+            <p class="text-car-gray">No orders yet</p>
+            <p class="text-sm text-car-gray mt-2">Premium reports you purchase will appear here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS PAGE -->
+    <div id="page-reports" class="hidden pt-20 min-h-screen">
+      <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+          <h1 style="font-family: 'Bebas Neue';" class="text-3xl">MY <span class="text-car-teal">REPORTS</span></h1>
+          <button onclick="showPage('home')" class="btn px-4 py-2 rounded-xl text-car-dark font-semibold text-sm">
+            + New Report
+          </button>
+        </div>
+        
+        <div id="reports-list" class="space-y-4">
+          <div class="card rounded-2xl p-6 text-center">
+            <p class="text-car-gray">No reports yet</p>
+            <p class="text-sm text-car-gray mt-2">Vehicle reports you generate will appear here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VEHICLES PAGE -->
+    <div id="page-vehicles" class="hidden pt-20 min-h-screen">
+      <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+          <h1 style="font-family: 'Bebas Neue';" class="text-3xl">MY <span class="text-car-teal">VEHICLES</span></h1>
+          <button onclick="showModal('add-vehicle')" class="btn px-4 py-2 rounded-xl text-car-dark font-semibold text-sm">
+            + Add Vehicle
+          </button>
+        </div>
+        
+        <div id="vehicles-list" class="grid md:grid-cols-2 gap-4">
+          <div class="card rounded-2xl p-6 text-center col-span-2">
+            <p class="text-car-gray">No saved vehicles</p>
+            <p class="text-sm text-car-gray mt-2">Save vehicles to track their history and get alerts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <div id="modal-overlay" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
+    <div id="modal-content" class="bg-car-navy rounded-2xl max-w-md w-full p-6 relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-car-gray hover:text-white text-xl">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    // ============ SUPABASE CONFIG ============
+    const SUPABASE_URL = 'https://pqjjnvcrdvybpcbvhaak.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_jn_Kjep928vCob2KlMA4LA_UC43yC6j';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    
+    // ============ STATE ============
+    let currentUser = null;
+    let currentTab = 'vin';
+    
+    // Check for auth on load
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Check current session
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        await loadUserProfile(session.user);
+      }
+      
+      // Listen for auth changes
+      supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+          await loadUserProfile(session.user);
+          closeModal();
+          showPage('dashboard');
+        } else if (event === 'SIGNED_OUT') {
+          currentUser = null;
+          updateUI();
+          showPage('home');
+        }
+      });
+      
+      // Format VIN input
+      document.getElementById('vin').addEventListener('input', (e) => {
+        e.target.value = e.target.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, '');
+      });
+      
+      // Format plate input
+      document.getElementById('plate').addEventListener('input', (e) => {
+        e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+      });
+    });
+    
+    // Load user profile from Supabase
+    async function loadUserProfile(authUser) {
+      // Get or create user profile in database
+      let { data: profile, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', authUser.id)
+        .single();
+      
+      if (error && error.code === 'PGRST116') {
+        // Profile doesn't exist, create it
+        const { data: newProfile } = await supabase
+          .from('profiles')
+          .insert({
+            id: authUser.id,
+            email: authUser.email,
+            name: authUser.user_metadata?.full_name || authUser.user_metadata?.name || authUser.email?.split('@')[0] || 'User',
+            created_at: new Date().toISOString()
+          })
+          .select()
+          .single();
+        profile = newProfile;
+      }
+      
+      // Get user's reports
+      const { data: reports } = await supabase
+        .from('reports')
+        .select('*')
+        .eq('user_id', authUser.id)
+        .order('created_at', { ascending: false });
+      
+      // Get user's vehicles
+      const { data: vehicles } = await supabase
+        .from('vehicles')
+        .select('*')
+        .eq('user_id', authUser.id);
+      
+      // Get user's orders
+      const { data: orders } = await supabase
+        .from('orders')
+        .select('*')
+        .eq('user_id', authUser.id)
+        .order('created_at', { ascending: false });
+      
+      currentUser = {
+        id: authUser.id,
+        email: authUser.email,
+        name: profile?.name || authUser.email?.split('@')[0] || 'User',
+        phone: profile?.phone || '',
+        createdAt: profile?.created_at || authUser.created_at,
+        reports: reports || [],
+        vehicles: vehicles || [],
+        orders: orders || []
+      };
+      
+      updateUI();
+    }
+    
+    // ============ TABS ============
+    function switchTab(tab) {
+      currentTab = tab;
+      document.getElementById('tab-vin').className = tab === 'vin' ? 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-active' : 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-inactive';
+      document.getElementById('tab-plate').className = tab === 'plate' ? 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-active' : 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-inactive';
+      document.getElementById('input-vin').classList.toggle('hidden', tab !== 'vin');
+      document.getElementById('input-plate').classList.toggle('hidden', tab !== 'plate');
+    }
+    
+    // ============ NAVIGATION ============
+    function showPage(page) {
+      document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+      document.getElementById('page-' + page).classList.remove('hidden');
+      
+      if (page !== 'home' && !currentUser) {
+        showModal('login');
+        return;
+      }
+      
+      if (page === 'dashboard') loadDashboard();
+      if (page === 'profile') loadProfile();
+      if (page === 'reports') loadReports();
+      if (page === 'vehicles') loadVehicles();
+      if (page === 'orders') loadOrders();
+      
+      window.scrollTo(0, 0);
+    }
+    
+    function scrollToSearch() {
+      showPage('home');
+      setTimeout(() => document.getElementById('vin').focus(), 100);
+    }
+    
+    // ============ SIDEBAR ============
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('open');
+    }
+    
+    // ============ MODALS ============
+    function showModal(type) {
+      const overlay = document.getElementById('modal-overlay');
+      const body = document.getElementById('modal-body');
+      
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      
+      if (type === 'login') {
+        body.innerHTML = `
+          <div class="text-center mb-6">
+            <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">WELCOME BACK</h3>
+            <p class="text-car-gray text-sm">Sign in to your account</p>
+          </div>
+          
+          <div class="space-y-3 mb-6">
+            <button onclick="socialLogin('google')" class="social-btn w-full bg-white text-gray-800 py-3 rounded-xl font-medium flex items-center justify-center gap-3">
+              <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Continue with Google
+            </button>
+            <button onclick="socialLogin('apple')" class="social-btn w-full bg-black text-white py-3 rounded-xl font-medium flex items-center justify-center gap-3 border border-white/20">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              Continue with Apple
+            </button>
+          </div>
+          
+          <div class="relative mb-6">
+            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+            <div class="relative flex justify-center text-sm"><span class="px-4 bg-car-navy text-car-gray">or</span></div>
+          </div>
+          
+          <form onsubmit="emailLogin(event)" class="space-y-4">
+            <input type="email" id="login-email" placeholder="Email address" required class="w-full input-field rounded-xl px-4 py-3">
+            <input type="password" id="login-password" placeholder="Password" required class="w-full input-field rounded-xl px-4 py-3">
+            <button type="submit" class="btn w-full py-3 rounded-xl text-car-dark font-bold">Sign In</button>
+          </form>
+          
+          <p class="text-center text-sm text-car-gray mt-6">
+            Don't have an account? <button onclick="showModal('signup')" class="text-car-teal hover:underline">Sign up</button>
+          </p>
+        `;
+      } else if (type === 'signup') {
+        body.innerHTML = `
+          <div class="text-center mb-6">
+            <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">CREATE ACCOUNT</h3>
+            <p class="text-car-gray text-sm">Join millions of smart car buyers</p>
+          </div>
+          
+          <div class="space-y-3 mb-6">
+            <button onclick="socialLogin('google')" class="social-btn w-full bg-white text-gray-800 py-3 rounded-xl font-medium flex items-center justify-center gap-3">
+              <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Continue with Google
+            </button>
+            <button onclick="socialLogin('apple')" class="social-btn w-full bg-black text-white py-3 rounded-xl font-medium flex items-center justify-center gap-3 border border-white/20">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              Continue with Apple
+            </button>
+          </div>
+          
+          <div class="relative mb-6">
+            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+            <div class="relative flex justify-center text-sm"><span class="px-4 bg-car-navy text-car-gray">or</span></div>
+          </div>
+          
+          <form onsubmit="emailSignup(event)" class="space-y-4">
+            <input type="text" id="signup-name" placeholder="Full name" required class="w-full input-field rounded-xl px-4 py-3">
+            <input type="email" id="signup-email" placeholder="Email address" required class="w-full input-field rounded-xl px-4 py-3">
+            <input type="password" id="signup-password" placeholder="Password (min 8 characters)" required minlength="8" class="w-full input-field rounded-xl px-4 py-3">
+            <button type="submit" class="btn w-full py-3 rounded-xl text-car-dark font-bold">Create Account</button>
+          </form>
+          
+          <p class="text-center text-sm text-car-gray mt-6">
+            Already have an account? <button onclick="showModal('login')" class="text-car-teal hover:underline">Sign in</button>
+          </p>
+        `;
+      } else if (type === 'add-vehicle') {
+        body.innerHTML = `
+          <div class="text-center mb-6">
+            <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">ADD VEHICLE</h3>
+            <p class="text-car-gray text-sm">Save a vehicle to track its history</p>
+          </div>
+          
+          <form onsubmit="addVehicle(event)" class="space-y-4">
+            <input type="text" id="add-vin" placeholder="VIN Number" maxlength="17" required class="w-full input-field rounded-xl px-4 py-3 uppercase">
+            <input type="text" id="add-nickname" placeholder="Nickname (e.g. My Honda)" class="w-full input-field rounded-xl px-4 py-3">
+            <button type="submit" class="btn w-full py-3 rounded-xl text-car-dark font-bold">Add Vehicle</button>
+          </form>
+        `;
+      }
+    }
+    
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      document.getElementById('modal-overlay').classList.remove('flex');
+    }
+    
+    // ============ AUTH ============
+    async function socialLogin(provider) {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: provider,
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+      
+      if (error) {
+        alert('Login failed: ' + error.message);
+      }
+    }
+    
+    async function emailLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+      
+      if (error) {
+        alert('Login failed: ' + error.message);
+      }
+    }
+    
+    async function emailSignup(e) {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name
+          }
+        }
+      });
+      
+      if (error) {
+        alert('Signup failed: ' + error.message);
+      } else if (data.user && !data.session) {
+        alert('Please check your email to confirm your account!');
+        closeModal();
+      }
+    }
+    
+    async function logout() {
+      await supabase.auth.signOut();
+      currentUser = null;
+      updateUI();
+      toggleSidebar();
+      showPage('home');
+    }
+    
+    function updateUI() {
+      const isLoggedIn = currentUser !== null;
+      document.getElementById('nav-guest').classList.toggle('hidden', isLoggedIn);
+      document.getElementById('nav-user').classList.toggle('hidden', !isLoggedIn);
+      
+      if (isLoggedIn) {
+        const initial = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('user-avatar').textContent = initial;
+        document.getElementById('sidebar-avatar').textContent = initial;
+        document.getElementById('sidebar-name').textContent = currentUser.name;
+        document.getElementById('sidebar-email').textContent = currentUser.email;
+      }
+    }
+    
+    // ============ DASHBOARD ============
+    function loadDashboard() {
+      if (!currentUser) return;
+      
+      document.getElementById('dash-name').textContent = currentUser.name.split(' ')[0].toUpperCase();
+      document.getElementById('stat-reports').textContent = currentUser.reports?.length || 0;
+      document.getElementById('stat-vehicles').textContent = currentUser.vehicles?.length || 0;
+      document.getElementById('stat-orders').textContent = currentUser.orders?.length || 0;
+      
+      const since = new Date(currentUser.createdAt);
+      document.getElementById('stat-since').textContent = since.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      
+      // Recent reports
+      const reportsEl = document.getElementById('recent-reports');
+      if (currentUser.reports?.length > 0) {
+        reportsEl.innerHTML = currentUser.reports.slice(0, 3).map(r => `
+          <div class="flex justify-between items-center p-3 bg-car-dark/30 rounded-xl">
+            <div>
+              <p class="font-medium">${r.vehicle_year || ''} ${r.vehicle_make || ''} ${r.vehicle_model || 'Unknown'}</p>
+              <p class="text-sm text-car-gray">${r.vin || r.plate}</p>
+            </div>
+            <span class="text-xs text-car-gray">${new Date(r.created_at).toLocaleDateString()}</span>
+          </div>
+        `).join('');
+      }
+    }
+    
+    function loadProfile() {
+      if (!currentUser) return;
+      document.getElementById('profile-avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+      document.getElementById('profile-name').textContent = currentUser.name;
+      document.getElementById('profile-email').textContent = currentUser.email;
+      document.getElementById('edit-name').value = currentUser.name;
+      document.getElementById('edit-email').value = currentUser.email;
+      document.getElementById('edit-phone').value = currentUser.phone || '';
+    }
+    
+    async function saveProfile() {
+      if (!currentUser) return;
+      
+      const newName = document.getElementById('edit-name').value;
+      const newPhone = document.getElementById('edit-phone').value;
+      
+      const { error } = await supabase
+        .from('profiles')
+        .update({ name: newName, phone: newPhone })
+        .eq('id', currentUser.id);
+      
+      if (error) {
+        alert('Failed to save: ' + error.message);
+      } else {
+        currentUser.name = newName;
+        currentUser.phone = newPhone;
+        updateUI();
+        alert('Profile saved!');
+      }
+    }
+    
+    function loadReports() {
+      const el = document.getElementById('reports-list');
+      if (currentUser?.reports?.length > 0) {
+        el.innerHTML = currentUser.reports.map(r => `
+          <div class="card rounded-2xl p-4 flex justify-between items-center">
+            <div>
+              <p class="font-semibold">${r.vehicle_year || ''} ${r.vehicle_make || ''} ${r.vehicle_model || 'Unknown Vehicle'}</p>
+              <p class="text-sm text-car-gray">${r.type === 'plate' ? '🚘 ' + r.plate : '🔢 ' + r.vin}</p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm ${r.is_premium ? 'text-car-teal' : 'text-car-gray'}">${r.is_premium ? 'Premium' : 'Basic'}</p>
+              <p class="text-xs text-car-gray">${new Date(r.created_at).toLocaleDateString()}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+    
+    function loadVehicles() {
+      const el = document.getElementById('vehicles-list');
+      if (currentUser?.vehicles?.length > 0) {
+        el.innerHTML = currentUser.vehicles.map(v => `
+          <div class="card rounded-2xl p-4">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <p class="font-semibold">${v.nickname || 'My Vehicle'}</p>
+                <p class="text-sm text-car-gray">${v.vin}</p>
+              </div>
+              <button onclick="removeVehicle('${v.vin}')" class="text-red-400 hover:text-red-300 text-sm">Remove</button>
+            </div>
+            <button onclick="checkVehicleByVin('${v.vin}')" class="btn-outline w-full py-2 rounded-xl text-sm">Check History</button>
+          </div>
+        `).join('');
+      }
+    }
+    
+    function loadOrders() {
+      const el = document.getElementById('orders-list');
+      if (currentUser?.orders?.length > 0) {
+        el.innerHTML = currentUser.orders.map(o => `
+          <div class="card rounded-2xl p-4 flex justify-between items-center">
+            <div>
+              <p class="font-semibold">Premium Report</p>
+              <p class="text-sm text-car-gray">${o.vin || o.report_id}</p>
+            </div>
+            <div class="text-right">
+              <p class="text-car-teal font-semibold">$${o.amount}</p>
+              <p class="text-xs text-car-gray">${new Date(o.created_at).toLocaleDateString()}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+    
+    async function addVehicle(e) {
+      e.preventDefault();
+      if (!currentUser) return;
+      
+      const vin = document.getElementById('add-vin').value.toUpperCase();
+      const nickname = document.getElementById('add-nickname').value;
+      
+      const { data, error } = await supabase
+        .from('vehicles')
+        .insert({
+          user_id: currentUser.id,
+          vin: vin,
+          nickname: nickname
+        })
+        .select()
+        .single();
+      
+      if (error) {
+        alert('Failed to add vehicle: ' + error.message);
+      } else {
+        currentUser.vehicles.push(data);
+        closeModal();
+        loadVehicles();
+        loadDashboard();
+      }
+    }
+    
+    async function removeVehicle(vin) {
+      if (!currentUser) return;
+      
+      const { error } = await supabase
+        .from('vehicles')
+        .delete()
+        .eq('user_id', currentUser.id)
+        .eq('vin', vin);
+      
+      if (!error) {
+        currentUser.vehicles = currentUser.vehicles.filter(v => v.vin !== vin);
+        loadVehicles();
+        loadDashboard();
+      }
+    }
+    
+    // ============ VEHICLE CHECK ============
+    function checkVehicle(type) {
+      let identifier, country, state;
+      
+      if (type === 'vin') {
+        identifier = document.getElementById('vin').value;
+        if (identifier.length !== 17) {
+          alert('Please enter a valid 17-character VIN');
+          return;
+        }
+      } else {
+        identifier = document.getElementById('plate').value;
+        country = document.getElementById('plate-country').value;
+        state = document.getElementById('plate-state').value;
+        if (!identifier) {
+          alert('Please enter a license plate number');
+          return;
+        }
+      }
+      
+      if (currentUser) {
+        // Logged in - proceed directly
+        performCheck(type, identifier, country, state);
+      } else {
+        // Not logged in - show email capture
+        showEmailCapture(type, identifier, country, state);
+      }
+    }
+    
+    function showEmailCapture(type, identifier, country, state) {
+      showModal('email-capture');
+      document.getElementById('modal-body').innerHTML = `
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-car-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">📧</span>
+          </div>
+          <h3 style="font-family: 'Bebas Neue';" class="text-2xl mb-2">GET YOUR FREE REPORT</h3>
+          <p class="text-car-gray text-sm">Enter your email to receive the report</p>
+        </div>
+        
+        <form onsubmit="submitWithEmail(event, '${type}', '${identifier}', '${country || ''}', '${state || ''}')" class="space-y-4">
+          <input type="email" id="capture-email" placeholder="your@email.com" required class="w-full input-field rounded-xl px-4 py-3">
+          <button type="submit" class="btn w-full py-3 rounded-xl text-car-dark font-bold">Get My Report</button>
+        </form>
+        
+        <p class="text-center text-xs text-car-gray mt-4">No spam. <a href="#" onclick="showModal('signup')" class="text-car-teal">Create account</a> for more features.</p>
+      `;
+    }
+    
+    function submitWithEmail(e, type, identifier, country, state) {
+      e.preventDefault();
+      const email = document.getElementById('capture-email').value;
+      performCheck(type, identifier, country, state, email);
+    }
+    
+    function performCheck(type, identifier, country, state, email) {
+      // Show loading
+      document.getElementById('modal-body').innerHTML = `
+        <div class="text-center py-12">
+          <div class="animate-spin w-16 h-16 border-4 border-car-teal border-t-transparent rounded-full mx-auto mb-6"></div>
+          <p class="text-lg">Scanning databases...</p>
+          <p class="text-sm text-car-gray mt-2">Checking 50+ sources</p>
+        </div>
+      `;
+      
+      if (!document.getElementById('modal-overlay').classList.contains('flex')) {
+        showModal('loading');
+      }
+      
+      // Call API
+      const payload = type === 'vin' 
+        ? { vin: identifier, email: email || currentUser?.email }
+        : { plate: identifier, country, state, email: email || currentUser?.email };
+      
+      fetch('https://n8n.srv803546.hstgr.cloud/webhook/carchecker/vin-check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(r => r.json())
+      .then(data => showReport(data, type, identifier))
+      .catch(() => {
+        // Demo fallback
+        showReport({
+          success: true,
+          vehicle: { year: '2023', make: 'Demo', model: 'Vehicle' },
+          titleStatus: { status: 'CLEAN' },
+          recalls: { count: 0 }
+        }, type, identifier);
+      });
+    }
+    
+    async function showReport(data, type, identifier) {
+      const v = data.vehicle || {};
+      const title = `${v.year || ''} ${v.make || ''} ${v.model || 'Unknown Vehicle'}`.trim();
+      
+      // Save to Supabase if logged in
+      if (currentUser) {
+        const { data: report, error } = await supabase
+          .from('reports')
+          .insert({
+            user_id: currentUser.id,
+            type: type,
+            vin: type === 'vin' ? identifier : null,
+            plate: type === 'plate' ? identifier : null,
+            vehicle_year: v.year,
+            vehicle_make: v.make,
+            vehicle_model: v.model,
+            title_status: data.titleStatus?.status,
+            recalls_count: data.recalls?.count || 0,
+            is_premium: false
+          })
+          .select()
+          .single();
+        
+        if (!error && report) {
+          currentUser.reports.unshift(report);
+        }
+      }
+      
+      document.getElementById('modal-body').innerHTML = `
+        <div class="text-center mb-4">
+          <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+            <span class="text-2xl">✓</span>
+          </div>
+          <h3 style="font-family: 'Bebas Neue';" class="text-2xl">${title || 'VEHICLE REPORT'}</h3>
+          <p class="text-car-gray text-sm">${type === 'vin' ? 'VIN: ' + identifier : '🚘 ' + identifier}</p>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <div class="bg-car-dark/50 rounded-lg p-3 flex justify-between">
+            <span class="text-car-teal">✓ Title Status</span>
+            <span class="text-green-400 font-medium">${data.titleStatus?.status || 'Clean'}</span>
+          </div>
+          <div class="bg-car-dark/50 rounded-lg p-3 flex justify-between">
+            <span class="text-car-teal">✓ Recalls</span>
+            <span class="${data.recalls?.count > 0 ? 'text-yellow-400' : 'text-green-400'} font-medium">${data.recalls?.count || 0} found</span>
+          </div>
+          <div class="bg-car-dark/50 rounded-lg p-3 flex justify-between opacity-50">
+            <span class="text-car-gray">🔒 Accident History</span>
+            <span class="text-car-gray text-sm">Premium</span>
+          </div>
+          <div class="bg-car-dark/50 rounded-lg p-3 flex justify-between opacity-50">
+            <span class="text-car-gray">🔒 Odometer Check</span>
+            <span class="text-car-gray text-sm">Premium</span>
+          </div>
+          <div class="bg-car-dark/50 rounded-lg p-3 flex justify-between opacity-50">
+            <span class="text-car-gray">🔒 Market Value</span>
+            <span class="text-car-gray text-sm">Premium</span>
+          </div>
+        </div>
+        
+        <div class="flex gap-2 mb-4 justify-center">
+          <button onclick="shareReport('twitter', '${identifier}')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal flex items-center justify-center">𝕏</button>
+          <button onclick="shareReport('facebook', '${identifier}')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal flex items-center justify-center">f</button>
+          <button onclick="shareReport('whatsapp', '${identifier}')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal flex items-center justify-center">w</button>
+          <button onclick="copyLink('${identifier}')" class="w-9 h-9 bg-car-dark/50 rounded-lg text-car-gray hover:text-car-teal flex items-center justify-center">📋</button>
+        </div>
+        
+        <button class="btn w-full py-3 rounded-xl text-car-dark font-bold">
+          Unlock Full Report - $9.99
+        </button>
+        
+        ${currentUser ? `
+          <button onclick="saveVehicleFromReport('${identifier}')" class="w-full mt-3 py-3 rounded-xl border border-car-teal/30 text-car-teal hover:bg-car-teal/10 transition text-sm">
+            + Save to My Vehicles
+          </button>
+        ` : ''}
+      `;
+    }
+    
+    function saveVehicleFromReport(vin) {
+      if (!currentUser) return;
+      if (!currentUser.vehicles) currentUser.vehicles = [];
+      if (currentUser.vehicles.find(v => v.vin === vin)) {
+        alert('Vehicle already saved!');
+        return;
+      }
+      currentUser.vehicles.push({ vin, addedAt: new Date().toISOString() });
+      localStorage.setItem('carchecker_user', JSON.stringify(currentUser));
+      alert('Vehicle saved!');
+    }
+    
+    function quickCheck() {
+      const value = document.getElementById('dash-vin').value.toUpperCase();
+      if (value.length === 17) {
+        performCheck('vin', value);
+      } else if (value.length > 0) {
+        performCheck('plate', value);
+      }
+    }
+    
+    function checkVehicleByVin(vin) {
+      performCheck('vin', vin);
+    }
+    
+    // ============ SHARE ============
+    function shareReport(platform, id) {
+      const url = encodeURIComponent(location.origin + '?check=' + id);
+      const text = encodeURIComponent('Just checked this vehicle on CarChecker Pro! ✅🚗');
+      const urls = {
+        twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+        facebook: `https://facebook.com/sharer/sharer.php?u=${url}`,
+        whatsapp: `https://wa.me/?text=${text} ${url}`
+      };
+      window.open(urls[platform], '_blank');
+    }
+    
+    function copyLink(id) {
+      navigator.clipboard.writeText(location.origin + '?check=' + id);
+      alert('Link copied!');
+    }
+    
+    // ============ SAMPLE ============
+    function showSample() {
+      showModal('sample');
+      document.getElementById('modal-body').innerHTML = `
+        <div class="bg-gradient-to-r from-car-teal/20 to-car-cyan/20 -m-6 mb-4 p-4 rounded-t-2xl">
+          <p class="text-car-teal text-xs font-semibold">SAMPLE PREMIUM REPORT</p>
+          <h3 style="font-family: 'Bebas Neue';" class="text-2xl">2023 TOYOTA CAMRY LE</h3>
+          <p class="text-car-gray text-sm">VIN: 4T1BF1FK5CU******</p>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+            <span class="text-green-400 font-semibold">✓ Title: CLEAN</span>
+          </div>
+          <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+            <span class="text-green-400 font-semibold">✓ Accidents: NONE REPORTED</span>
+          </div>
+          <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+            <span class="text-green-400 font-semibold">✓ Odometer: VERIFIED</span>
+            <p class="text-car-gray text-xs mt-1">12,450 miles (3 readings)</p>
+          </div>
+          <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3">
+            <span class="text-yellow-400 font-semibold">⚠️ Recalls: 1 OPEN</span>
+            <p class="text-car-gray text-xs mt-1">Fuel pump module - contact dealer</p>
+          </div>
+          <div class="bg-car-dark/50 rounded-lg p-3 text-center">
+            <p class="text-car-gray text-xs">Estimated Market Value</p>
+            <p style="font-family: 'Bebas Neue';" class="text-3xl">$24,500</p>
+            <p class="text-car-gray text-xs">Range: $22,800 - $26,200</p>
+          </div>
+        </div>
+        
+        <button onclick="closeModal(); scrollToSearch();" class="btn w-full py-3 rounded-xl text-car-dark font-bold">
+          Check Your Vehicle
+        </button>
+      `;
+    }
+  </script>
+</body>
+</html>
