@@ -35,6 +35,8 @@
     .tab-active { background: linear-gradient(135deg, #00d4aa 0%, #00b8d4 100%); color: #0a0f1c; }
     .tab-inactive { background: rgba(255,255,255,0.05); color: #8892a4; }
     .tab-inactive:hover { background: rgba(255,255,255,0.1); }
+    .tab-plate-active { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: #ffffff; }
+    .tab-plate-inactive { background: rgba(139,92,246,0.1); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
     .input-field { background: rgba(10,15,28,0.5); border: 1px solid rgba(255,255,255,0.1); }
     .input-field:focus { border-color: rgba(0,212,170,0.5); outline: none; }
     .social-btn { transition: all 0.2s; }
@@ -63,7 +65,7 @@
         <!-- Not logged in -->
         <div id="nav-guest" class="flex items-center gap-3">
           <button onclick="showModal('login')" class="text-car-gray hover:text-white transition px-4 py-2">Sign In</button>
-          <button onclick="showModal('signup')" class="btn px-5 py-2 rounded-full text-car-dark font-semibold text-sm">Get Started</button>
+          <button onclick="showPage('get-started')" class="btn px-5 py-2 rounded-full text-car-dark font-semibold text-sm">Get Started</button>
         </div>
         
         <!-- Logged in -->
@@ -150,7 +152,7 @@
               <button id="tab-vin" onclick="switchTab('vin')" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-active">
                 🔢 VIN Number
               </button>
-              <button id="tab-plate" onclick="switchTab('plate')" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-inactive">
+              <button id="tab-plate" onclick="switchTab('plate')" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-plate-inactive">
                 🚘 License Plate
               </button>
             </div>
@@ -285,7 +287,335 @@
       </div>
     </div>
 
-    <!-- ... rest of original content preserved ... -->
+    <!-- GET STARTED PAGE -->
+    <div id="page-get-started" class="hidden pt-20 min-h-screen hero-bg">
+      <div class="max-w-5xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+          <h1 style="font-family: 'Bebas Neue';" class="text-5xl mb-4">
+            WELCOME TO <span class="text-car-teal">CARCHECKER PRO</span>
+          </h1>
+          <p class="text-car-gray text-lg max-w-2xl mx-auto">
+            Your comprehensive vehicle history platform. Here's how to get the most out of CarChecker Pro.
+          </p>
+        </div>
+
+        <!-- How It Works -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="card rounded-2xl p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-car-teal to-car-cyan rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+              🔍
+            </div>
+            <h3 class="font-bold text-xl mb-3">1. Enter Vehicle Info</h3>
+            <p class="text-car-gray text-sm">
+              Simply enter a VIN number or license plate. We support vehicles from 8+ countries including USA, UK, and Europe.
+            </p>
+          </div>
+
+          <div class="card rounded-2xl p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-car-teal to-car-cyan rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+              📊
+            </div>
+            <h3 class="font-bold text-xl mb-3">2. Get Instant Report</h3>
+            <p class="text-car-gray text-sm">
+              Receive a comprehensive report in seconds with accident history, title status, recalls, and market value.
+            </p>
+          </div>
+
+          <div class="card rounded-2xl p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-car-teal to-car-cyan rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+              ✅
+            </div>
+            <h3 class="font-bold text-xl mb-3">3. Make Informed Decisions</h3>
+            <p class="text-car-gray text-sm">
+              Use detailed insights to negotiate better prices, avoid problematic vehicles, and buy with confidence.
+            </p>
+          </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="mb-12">
+          <h2 style="font-family: 'Bebas Neue';" class="text-3xl text-center mb-8">WHAT YOU GET</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="flex items-start gap-3 p-4 bg-car-navy/50 rounded-xl">
+              <span class="text-2xl">🚗</span>
+              <div>
+                <h4 class="font-semibold mb-1">Vehicle Specifications</h4>
+                <p class="text-sm text-car-gray">Make, model, year, trim, engine, and technical details</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-car-navy/50 rounded-xl">
+              <span class="text-2xl">💥</span>
+              <div>
+                <h4 class="font-semibold mb-1">Accident History</h4>
+                <p class="text-sm text-car-gray">Detailed accident reports and damage records</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-car-navy/50 rounded-xl">
+              <span class="text-2xl">📜</span>
+              <div>
+                <h4 class="font-semibold mb-1">Title Information</h4>
+                <p class="text-sm text-car-gray">Clean, salvage, rebuilt, or branded title status</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-car-navy/50 rounded-xl">
+              <span class="text-2xl">🔢</span>
+              <div>
+                <h4 class="font-semibold mb-1">Odometer Readings</h4>
+                <p class="text-sm text-car-gray">Mileage history and rollback detection</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-car-navy/50 rounded-xl">
+              <span class="text-2xl">⚠️</span>
+              <div>
+                <h4 class="font-semibold mb-1">Recalls & Defects</h4>
+                <p class="text-sm text-car-gray">Open recalls and manufacturer defects</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-car-navy/50 rounded-xl">
+              <span class="text-2xl">💰</span>
+              <div>
+                <h4 class="font-semibold mb-1">Market Value</h4>
+                <p class="text-sm text-car-gray">Fair market price based on condition and history</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button onclick="showPage('home'); setTimeout(() => document.getElementById('vin').focus(), 100);"
+            class="btn px-8 py-4 rounded-xl text-car-dark font-bold text-lg">
+            Check a Vehicle Now
+          </button>
+          <button onclick="showModal('signup')"
+            class="btn-outline px-8 py-4 rounded-xl font-bold text-lg">
+            Create Free Account
+          </button>
+        </div>
+
+        <div class="text-center mt-8">
+          <p class="text-car-gray text-sm">
+            Join 10M+ users who trust CarChecker Pro
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="hidden pt-20 min-h-screen">
+      <div class="max-w-4xl mx-auto px-4 py-8">
+        <h1 style="font-family: 'Bebas Neue';" class="text-3xl mb-8">MY PROFILE</h1>
+
+        <div class="card rounded-2xl p-6 mb-6">
+          <h3 class="font-semibold mb-4">Personal Information</h3>
+          <form onsubmit="updateProfile(event)" class="space-y-4">
+            <div>
+              <label class="text-sm text-car-gray mb-1 block">Full Name</label>
+              <input type="text" id="profile-name" class="w-full input-field rounded-xl px-4 py-3">
+            </div>
+            <div>
+              <label class="text-sm text-car-gray mb-1 block">Email Address</label>
+              <input type="email" id="profile-email" class="w-full input-field rounded-xl px-4 py-3" disabled>
+            </div>
+            <div>
+              <label class="text-sm text-car-gray mb-1 block">Phone Number</label>
+              <input type="tel" id="profile-phone" class="w-full input-field rounded-xl px-4 py-3">
+            </div>
+            <button type="submit" class="btn px-6 py-3 rounded-xl text-car-dark font-semibold">
+              Save Changes
+            </button>
+          </form>
+        </div>
+
+        <div class="card rounded-2xl p-6">
+          <h3 class="font-semibold mb-4">Security</h3>
+          <button onclick="alert('Password reset email sent!')" class="btn-outline px-6 py-3 rounded-xl font-semibold">
+            Change Password
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS PAGE -->
+    <div id="page-reports" class="hidden pt-20 min-h-screen">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <h1 style="font-family: 'Bebas Neue';" class="text-3xl mb-8">MY REPORTS</h1>
+
+        <div id="reports-list" class="space-y-4">
+          <p class="text-car-gray">No reports yet. <a href="#" onclick="showPage('home')" class="text-car-teal hover:underline">Check a vehicle</a> to get started.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VEHICLES PAGE -->
+    <div id="page-vehicles" class="hidden pt-20 min-h-screen">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+          <h1 style="font-family: 'Bebas Neue';" class="text-3xl">MY VEHICLES</h1>
+          <button onclick="showModal('add-vehicle')" class="btn px-6 py-3 rounded-xl text-car-dark font-semibold">
+            + Add Vehicle
+          </button>
+        </div>
+
+        <div id="vehicles-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <p class="text-car-gray col-span-full">No saved vehicles yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS PAGE -->
+    <div id="page-orders" class="hidden pt-20 min-h-screen">
+      <div class="max-w-6xl mx-auto px-4 py-8">
+        <h1 style="font-family: 'Bebas Neue';" class="text-3xl mb-8">ORDER HISTORY</h1>
+
+        <div id="orders-list" class="space-y-4">
+          <p class="text-car-gray">No orders yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARTIAL REPORT PAGE (Free Tier) -->
+    <div id="page-report" class="hidden pt-20 min-h-screen">
+      <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex items-center gap-4 mb-8">
+          <button onclick="showPage('home')" class="text-car-gray hover:text-white">
+            ← Back
+          </button>
+          <h1 style="font-family: 'Bebas Neue';" class="text-3xl">VEHICLE REPORT</h1>
+        </div>
+
+        <!-- Report Content -->
+        <div id="report-content" class="space-y-6">
+          <!-- Vehicle Summary Card -->
+          <div class="card rounded-2xl p-6">
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <h2 style="font-family: 'Bebas Neue';" class="text-2xl mb-2" id="report-vehicle-name">Vehicle Information</h2>
+                <p class="text-car-gray text-sm" id="report-vin">VIN: -</p>
+              </div>
+              <span class="px-4 py-2 bg-car-teal/20 text-car-teal rounded-full text-sm font-semibold">Free Report</span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 mt-6">
+              <div>
+                <p class="text-car-gray text-sm mb-1">Year</p>
+                <p class="font-semibold" id="report-year">-</p>
+              </div>
+              <div>
+                <p class="text-car-gray text-sm mb-1">Make</p>
+                <p class="font-semibold" id="report-make">-</p>
+              </div>
+              <div>
+                <p class="text-car-gray text-sm mb-1">Model</p>
+                <p class="font-semibold" id="report-model">-</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Basic Information (Free) -->
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold text-xl mb-4">✓ Basic Information</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-car-gray">Vehicle Type</span>
+                <span id="report-type">Sedan</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-car-gray">Fuel Type</span>
+                <span id="report-fuel">Gasoline</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-car-gray">Transmission</span>
+                <span id="report-transmission">Automatic</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-car-gray">Engine</span>
+                <span id="report-engine">2.5L 4-Cylinder</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Locked Features (Premium) -->
+          <div class="card rounded-2xl p-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-car-navy/95 z-10"></div>
+            <div class="blur-sm">
+              <h3 class="font-semibold text-xl mb-4">🔒 Accident History</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-car-gray">Accidents Reported</span>
+                  <span class="text-yellow-400">⚠ 2 Found</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-car-gray">Damage Severity</span>
+                  <span>Moderate</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-car-gray">Last Accident Date</span>
+                  <span>March 2024</span>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="text-center">
+                <div class="text-5xl mb-3">🔒</div>
+                <p class="text-white font-semibold mb-2">Unlock Full Report</p>
+                <p class="text-car-gray text-sm mb-4">Get accident history, title status, recalls & more</p>
+                <button onclick="showUpgradeModal()" class="btn px-6 py-3 rounded-xl text-car-dark font-bold">
+                  Upgrade Now - $24.99
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card rounded-2xl p-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-car-navy/95 z-10"></div>
+            <div class="blur-sm">
+              <h3 class="font-semibold text-xl mb-4">🔒 Title Information</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-car-gray">Title Status</span>
+                  <span>Clean Title</span>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="text-4xl">🔒</div>
+            </div>
+          </div>
+
+          <div class="card rounded-2xl p-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-car-navy/95 z-10"></div>
+            <div class="blur-sm">
+              <h3 class="font-semibold text-xl mb-4">🔒 Odometer History</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-car-gray">Last Reading</span>
+                  <span>85,432 miles</span>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="text-4xl">🔒</div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="bg-gradient-to-r from-car-teal to-car-cyan rounded-2xl p-8 text-center">
+            <h3 style="font-family: 'Bebas Neue';" class="text-3xl text-car-dark mb-3">
+              GET THE COMPLETE PICTURE
+            </h3>
+            <p class="text-car-dark/80 mb-6">
+              Unlock full accident history, title status, odometer readings, recalls, market value, and more
+            </p>
+            <button onclick="showUpgradeModal()" class="bg-car-dark text-white px-8 py-4 rounded-xl font-bold hover:bg-car-navy transition">
+              Upgrade to Full Report - $24.99
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <!-- MODALS -->
@@ -401,7 +731,7 @@
     function switchTab(tab) {
       currentTab = tab;
       document.getElementById('tab-vin').className = tab === 'vin' ? 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-active' : 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-inactive';
-      document.getElementById('tab-plate').className = tab === 'plate' ? 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-active' : 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-inactive';
+      document.getElementById('tab-plate').className = tab === 'plate' ? 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-plate-active' : 'flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition tab-plate-inactive';
       document.getElementById('input-vin').classList.toggle('hidden', tab !== 'vin');
       document.getElementById('input-plate').classList.toggle('hidden', tab !== 'plate');
     }
@@ -696,7 +1026,257 @@
       }
     }
 
-    // rest of JS unchanged...
+
+    // ============ PROFILE ============
+    function loadProfile() {
+      if (!currentUser) return;
+
+      document.getElementById('profile-name').value = currentUser.name;
+      document.getElementById('profile-email').value = currentUser.email;
+      document.getElementById('profile-phone').value = currentUser.phone || '';
+    }
+
+    async function updateProfile(e) {
+      e.preventDefault();
+      if (!currentUser) return;
+
+      const name = document.getElementById('profile-name').value;
+      const phone = document.getElementById('profile-phone').value;
+
+      const { error } = await supabase
+        .from('profiles')
+        .update({ name, phone })
+        .eq('id', currentUser.id);
+
+      if (error) {
+        alert('Failed to update profile: ' + error.message);
+      } else {
+        currentUser.name = name;
+        currentUser.phone = phone;
+        updateUI();
+        alert('Profile updated successfully!');
+      }
+    }
+
+    // ============ REPORTS ============
+    function loadReports() {
+      if (!currentUser) return;
+
+      const listEl = document.getElementById('reports-list');
+      if (currentUser.reports?.length > 0) {
+        listEl.innerHTML = currentUser.reports.map(r => `
+          <div class="card rounded-xl p-4 flex justify-between items-center">
+            <div>
+              <p class="font-medium">${r.vehicle_year || ''} ${r.vehicle_make || ''} ${r.vehicle_model || 'Unknown Vehicle'}</p>
+              <p class="text-sm text-car-gray">${r.vin || r.plate}</p>
+              <p class="text-xs text-car-gray mt-1">${new Date(r.created_at).toLocaleDateString()}</p>
+            </div>
+            <button onclick="viewReport('${r.id}')" class="btn-outline px-4 py-2 rounded-lg text-sm">View</button>
+          </div>
+        `).join('');
+      } else {
+        listEl.innerHTML = '<p class="text-car-gray">No reports yet. <a href="#" onclick="showPage(\'home\')" class="text-car-teal hover:underline">Check a vehicle</a> to get started.</p>';
+      }
+    }
+
+    function viewReport(reportId) {
+      // Find the report in currentUser.reports
+      const report = currentUser.reports.find(r => r.id === reportId);
+      if (report) {
+        displayReport(report);
+      }
+    }
+
+    // ============ VEHICLES ============
+    function loadVehicles() {
+      if (!currentUser) return;
+
+      const listEl = document.getElementById('vehicles-list');
+      if (currentUser.vehicles?.length > 0) {
+        listEl.innerHTML = currentUser.vehicles.map(v => `
+          <div class="card rounded-xl p-4">
+            <h4 class="font-semibold mb-2">${v.nickname || 'My Vehicle'}</h4>
+            <p class="text-sm text-car-gray mb-1">${v.year || ''} ${v.make || ''} ${v.model || ''}</p>
+            <p class="text-xs text-car-gray mb-3">VIN: ${v.vin}</p>
+            <button onclick="checkVehicle('vin', '${v.vin}')" class="btn-outline px-4 py-2 rounded-lg text-sm w-full">
+              Check Report
+            </button>
+          </div>
+        `).join('');
+      } else {
+        listEl.innerHTML = '<p class="text-car-gray col-span-full">No saved vehicles yet.</p>';
+      }
+    }
+
+    async function addVehicle(e) {
+      e.preventDefault();
+      if (!currentUser) return;
+
+      const vin = document.getElementById('add-vin').value.toUpperCase();
+      const nickname = document.getElementById('add-nickname').value;
+
+      const { data, error } = await supabase
+        .from('vehicles')
+        .insert({
+          user_id: currentUser.id,
+          vin: vin,
+          nickname: nickname,
+          created_at: new Date().toISOString()
+        })
+        .select()
+        .single();
+
+      if (error) {
+        alert('Failed to add vehicle: ' + error.message);
+      } else {
+        currentUser.vehicles.push(data);
+        closeModal();
+        showPage('vehicles');
+        alert('Vehicle added successfully!');
+      }
+    }
+
+    // ============ ORDERS ============
+    function loadOrders() {
+      if (!currentUser) return;
+
+      const listEl = document.getElementById('orders-list');
+      if (currentUser.orders?.length > 0) {
+        listEl.innerHTML = currentUser.orders.map(o => `
+          <div class="card rounded-xl p-4 flex justify-between items-center">
+            <div>
+              <p class="font-medium">${o.product_name || 'Vehicle Report'}</p>
+              <p class="text-sm text-car-gray">${new Date(o.created_at).toLocaleDateString()}</p>
+            </div>
+            <p class="font-bold text-car-teal">$${o.amount || '24.99'}</p>
+          </div>
+        `).join('');
+      } else {
+        listEl.innerHTML = '<p class="text-car-gray">No orders yet.</p>';
+      }
+    }
+
+    // ============ VEHICLE CHECK ============
+    function checkVehicle(type, value) {
+      let vehicleId;
+
+      if (value) {
+        vehicleId = value;
+      } else if (type === 'vin') {
+        vehicleId = document.getElementById('vin').value.trim().toUpperCase();
+      } else if (type === 'plate') {
+        const plate = document.getElementById('plate').value.trim().toUpperCase();
+        const country = document.getElementById('plate-country').value;
+        const state = document.getElementById('plate-state').value;
+        vehicleId = `${country}:${state}:${plate}`;
+      }
+
+      if (!vehicleId || vehicleId.length < 5) {
+        alert('Please enter a valid VIN or license plate');
+        return;
+      }
+
+      // Generate a mock report for demonstration
+      generateMockReport(vehicleId, type);
+    }
+
+    function quickCheck() {
+      const input = document.getElementById('dash-vin').value.trim().toUpperCase();
+      if (!input || input.length < 5) {
+        alert('Please enter a valid VIN or license plate');
+        return;
+      }
+
+      const type = input.length === 17 ? 'vin' : 'plate';
+      generateMockReport(input, type);
+    }
+
+    async function generateMockReport(vehicleId, type) {
+      // Show loading state
+      showPage('report');
+      document.getElementById('report-vehicle-name').textContent = 'Loading...';
+
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Generate mock data based on VIN/plate
+      const mockYears = [2018, 2019, 2020, 2021, 2022, 2023, 2024];
+      const mockMakes = ['Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Mercedes-Benz', 'Tesla', 'Nissan'];
+      const mockModels = {
+        'Toyota': ['Camry', 'Corolla', 'RAV4', 'Highlander'],
+        'Honda': ['Civic', 'Accord', 'CR-V', 'Pilot'],
+        'Ford': ['F-150', 'Mustang', 'Explorer', 'Escape'],
+        'Chevrolet': ['Silverado', 'Malibu', 'Equinox', 'Tahoe'],
+        'BMW': ['3 Series', '5 Series', 'X3', 'X5'],
+        'Mercedes-Benz': ['C-Class', 'E-Class', 'GLC', 'GLE'],
+        'Tesla': ['Model 3', 'Model Y', 'Model S', 'Model X'],
+        'Nissan': ['Altima', 'Sentra', 'Rogue', 'Pathfinder']
+      };
+
+      const year = mockYears[Math.floor(Math.random() * mockYears.length)];
+      const make = mockMakes[Math.floor(Math.random() * mockMakes.length)];
+      const model = mockModels[make][Math.floor(Math.random() * mockModels[make].length)];
+
+      const report = {
+        id: 'report_' + Date.now(),
+        user_id: currentUser?.id,
+        vin: type === 'vin' ? vehicleId : undefined,
+        plate: type === 'plate' ? vehicleId : undefined,
+        vehicle_year: year,
+        vehicle_make: make,
+        vehicle_model: model,
+        vehicle_type: 'Sedan',
+        fuel_type: 'Gasoline',
+        transmission: 'Automatic',
+        engine: '2.5L 4-Cylinder',
+        created_at: new Date().toISOString()
+      };
+
+      // Save report to database if user is logged in
+      if (currentUser) {
+        const { data, error } = await supabase
+          .from('reports')
+          .insert(report)
+          .select()
+          .single();
+
+        if (!error && data) {
+          currentUser.reports.unshift(data);
+        }
+      }
+
+      displayReport(report);
+    }
+
+    function displayReport(report) {
+      showPage('report');
+
+      document.getElementById('report-vehicle-name').textContent =
+        `${report.vehicle_year} ${report.vehicle_make} ${report.vehicle_model}`;
+      document.getElementById('report-vin').textContent =
+        `${report.vin ? 'VIN: ' + report.vin : 'Plate: ' + report.plate}`;
+      document.getElementById('report-year').textContent = report.vehicle_year || '-';
+      document.getElementById('report-make').textContent = report.vehicle_make || '-';
+      document.getElementById('report-model').textContent = report.vehicle_model || '-';
+      document.getElementById('report-type').textContent = report.vehicle_type || 'Sedan';
+      document.getElementById('report-fuel').textContent = report.fuel_type || 'Gasoline';
+      document.getElementById('report-transmission').textContent = report.transmission || 'Automatic';
+      document.getElementById('report-engine').textContent = report.engine || '2.5L 4-Cylinder';
+    }
+
+    // ============ MODALS ============
+    function showUpgradeModal() {
+      if (!currentUser) {
+        showModal('login');
+        return;
+      }
+
+      alert('Upgrade feature coming soon! You will be able to purchase full reports for $24.99 each.');
+    }
+
+    function showSample() {
+      generateMockReport('1HGBH41JXMN109186', 'vin');
+    }
   </script>
 </body>
 </html>
