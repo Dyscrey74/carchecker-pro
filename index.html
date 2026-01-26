@@ -740,18 +740,21 @@
     function showPage(page) {
       document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
       document.getElementById('page-' + page).classList.remove('hidden');
-      
-      if (page !== 'home' && !currentUser) {
+
+      // Pages accessible without login
+      const publicPages = ['home', 'get-started', 'report'];
+
+      if (!publicPages.includes(page) && !currentUser) {
         showModal('login');
         return;
       }
-      
+
       if (page === 'dashboard') loadDashboard();
       if (page === 'profile') loadProfile();
       if (page === 'reports') loadReports();
       if (page === 'vehicles') loadVehicles();
       if (page === 'orders') loadOrders();
-      
+
       window.scrollTo(0, 0);
     }
     
